@@ -12,7 +12,6 @@ typedef struct patient {
 
 //https://infoc.eet.bme.hu/jegyzet/c_puska.pdf
 
-
 Patient* createPatient(char *name, int age, int room);
 void addPatient(Patient **head, Patient *newPatient);
 void printPatients(Patient *head);
@@ -21,6 +20,7 @@ int getOldestPatient(Patient *head);
 //Se debe definir el idioma para todo el programa no tener ing y esp
 //se debe definir tambien el formato de la notacion  this_is_an_identifer vs camelCase. C utiliza this_is_an_identifer.
 void newAgeForPatients(Patient *head,int max_age,int aguaDeLaVida);
+void dar_de_alta(Patient **head, int identificador_habitacion);
 
 int main() {
     Patient *head = NULL;
@@ -49,6 +49,11 @@ int main() {
 
 
     printPatients(head);    
+
+    //Dar de alta
+    dar_de_alta(&head,12);
+    
+    printPatients(head);   
 
     // Free the memory used by the patients
     freePatients(head);
@@ -124,3 +129,36 @@ void newAgeForPatients(Patient *head,int max_age,int aguaDeLaVida){
            current = current->next;
      }     
 }
+
+// Funcion Eliminar elemento de la lista (simple)
+void dar_de_alta(Patient **head, int identificador_habitacion) {
+     Patient *current = *head;
+     Patient *anterior = NULL;
+     
+     //Caso con el Head o inicio
+     if (current != NULL && current->room == identificador_habitacion) {
+        *head = current->next; // se cambia el inicio o head
+        free(current);        // Free memory
+        return;
+    }
+     
+    // Se busca para eliminar guardando el elemento previo.
+    while (current != NULL && current->room != identificador_habitacion) {
+        anterior = current;
+        current = current->next;
+    }
+
+    // Si no se encuentra el valor buscado.
+    if (current == NULL) {
+        printf("No se encuentra la habilitación");
+        return;
+    }
+
+    // Se desvinculado los elementos de la lista antes de eliminar.
+    printf("El paciente %s de la habitacion %d es dato de alta\n\n",current->name,identificador_habitacion);
+    anterior->next = current->next;
+    free(current); // Free memory  
+     
+          
+}
+     
