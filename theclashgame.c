@@ -10,15 +10,22 @@ typedef struct patient {
     struct patient *next;
 } Patient;
 
+//https://infoc.eet.bme.hu/jegyzet/c_puska.pdf
+
+
 Patient* createPatient(char *name, int age, int room);
 void addPatient(Patient **head, Patient *newPatient);
 void printPatients(Patient *head);
 void freePatients(Patient *head);
-void getOldestPatient(Patient *head);
+int getOldestPatient(Patient *head);
+//Se debe definir el idioma para todo el programa no tener ing y esp
+//se debe definir tambien el formato de la notacion  this_is_an_identifer vs camelCase. C utiliza this_is_an_identifer.
+void newAgeForPatients(Patient *head,int max_age,int aguaDeLaVida);
 
 int main() {
     Patient *head = NULL;
     Patient *newPatient;
+    int maxAge = 0;
 
     // Create three patient records
     newPatient = createPatient("Manuel", 32, 6);
@@ -35,10 +42,18 @@ int main() {
 
     // Print the list of patients
     printPatients(head);
+    
+    //Print the oldes age.
+    maxAge = getOldestPatient(head);
+    newAgeForPatients(head,maxAge,20);
+
+
+    printPatients(head);    
 
     // Free the memory used by the patients
     freePatients(head);
 
+    system("pause");
     return 0;
 }
 
@@ -85,13 +100,27 @@ void freePatients(Patient *head) {
     }
 }
 // Function for get the oldest patient
-void getOldestPatient(Patient *head){
+int getOldestPatient(Patient *head){
     int maxAge = 0;
+    char nombre[20];
     Patient *current = head;
     while (current != NULL) {
-        if ( maxAge < current->age )
+        if ( maxAge < current->age ){
            maxAge = current->age;
+           strcpy(nombre, current->name);
+        }
         current = current->next;
     }
+    printf("The oldest patient is %s with %d years old\n\n\n",nombre,maxAge);
+    return maxAge;
 }
 
+void newAgeForPatients(Patient *head,int max_age,int aguaDeLaVida){
+     Patient *current = head;
+     while (current != NULL) {
+           if ( current->age == max_age) {
+              current->age = current->age - aguaDeLaVida;
+           }
+           current = current->next;
+     }     
+}
