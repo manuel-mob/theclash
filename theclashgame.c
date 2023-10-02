@@ -34,7 +34,7 @@ int main() {
     newPatient = createPatient("Alejandro", 45, 12);
     addPatient(&head, newPatient);
 
-    newPatient = createPatient("Rocio", 22, 53);
+    newPatient = createPatient("Rocio", 22, 54);
     addPatient(&head, newPatient);
 
     newPatient = createPatient("Amparo", 22, 53);
@@ -155,7 +155,7 @@ void dar_de_alta(Patient **head, int identificador_habitacion) {
     }
 
     // Se desvinculado los elementos de la lista antes de eliminar.
-    printf("El paciente %s de la habitacion %d es dato de alta\n\n",current->name,identificador_habitacion);
+    printf("El paciente %s de la habitacion %d es dado de alta\n\n",current->name,identificador_habitacion);
     anterior->next = current->next;
     free(current); // Free memory  
      
