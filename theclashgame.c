@@ -12,7 +12,8 @@ typedef struct patient {
 
 
 #define LISTA_ESPERA 5
-
+#define TOTAL_CARTAS_PRIMERA_SELEC 1
+#define TOTAL_CARTAS 5
 
 //https://infoc.eet.bme.hu/jegyzet/c_puska.pdf
 
