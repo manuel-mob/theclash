@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
 
     // Create three patient records
     newPatient = createPatient("Manuel", 32, 6);
+    //Aqui se agrega a la lista porque entrego el punto Head a la funcion.
     addPatient(&head, newPatient);
 
     newPatient = createPatient("Alejandro", 45, 12);
