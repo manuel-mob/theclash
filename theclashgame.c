@@ -11,9 +11,15 @@ typedef struct patient {
 } Patient;
 
 
+typedef struct player {
+        char name[20];
+        int lives;
+} Player;
+
 #define LISTA_ESPERA 5
 #define TOTAL_CARTAS_PRIMERA_SELEC 1
 #define TOTAL_CARTAS 5
+#define 
 
 //https://infoc.eet.bme.hu/jegyzet/c_puska.pdf
 
